@@ -1,5 +1,6 @@
 package com.owl_eye;
 
+import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -7,8 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.owl_eye.controller.InternalController;
+import com.owl_eye.messageSystem.Task;
 
 public class MasterActivity extends AppCompatActivity {
     String token;
@@ -17,6 +20,7 @@ public class MasterActivity extends AppCompatActivity {
     Button umMute ;
     Button runMotion ;
     Button stopMotion ;
+    ImageView camImage ;
 
 
     @Override
@@ -34,6 +38,52 @@ public class MasterActivity extends AppCompatActivity {
           runMotion = (Button) findViewById(R.id.runMotion);
          stopMotion = (Button) findViewById(R.id.stopMotion);
 
+        camImage = (ImageView) findViewById(R.id.camImage);
+
+
+
+        getPhoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InternalController.sentOrder(Task.GET_PHOTO);
+            }
+        });
+
+        umMute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InternalController.sentOrder(Task.UN_MUTE);
+            }
+        });
+
+        mute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InternalController.sentOrder(Task.MUTE);
+            }
+        });
+
+        runMotion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InternalController.sentOrder(Task.RUN_MOTION);
+            }
+        });
+
+        stopMotion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                InternalController.sentOrder(Task.STOP_MOTION);
+            }
+        });
+
     }
+
+    public void recivingPohot(){
+       // camImage.setImageIcon(new Icon());
+    }
+
+
+
 
 }
