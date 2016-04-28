@@ -21,6 +21,7 @@ import com.google.zxing.integration.android.IntentResult;
 public class MainActivity extends AppCompatActivity {
 
     private Button button;
+    private String token;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //FireBase
-        Firebase.setAndroidContext(this);
+        //Firebase.setAndroidContext(this);
         //
         setContentView(R.layout.activity_main);
         button = (Button) this.findViewById(R.id.button);
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 integrator.initiateScan();
             }
         });
+
     }
 
     @Override
@@ -59,6 +61,10 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Log.d("MainActivity", "Scanned");
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
+                //token = result.getContents();
+                Intent intent = new Intent(getBaseContext(), MasterActivity.class);
+                intent.putExtra("token", result.getContents());
+                startActivity(intent);
             }
         } else {
             // This is important, otherwise the result will not be passed to the fragment

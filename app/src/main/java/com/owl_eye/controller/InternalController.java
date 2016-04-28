@@ -3,6 +3,7 @@ package com.owl_eye.controller;
  
 
 
+import com.owl_eye.MasterActivity;
 import com.owl_eye.messageSystem.Message;
 import com.owl_eye.messageSystem.MessageSystem;
 import com.owl_eye.messageSystem.Task;
@@ -39,7 +40,7 @@ public class InternalController {
 	//static Page2Controller page2Controller ;
 	
 	
-	public static void start (String token/*,Page2Controller c*/) {
+	public static void start (String token,MasterActivity c) {
 		//page2Controller = c;
 		
 		messageSystem  =  new MessageSystem(ref.child(token).child("master"), ref.child(token).child("slave"));
