@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,9 +10,17 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.owl_eye.MasterActivity"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#414254"
     tools:showIn="@layout/activity_master">
 
 
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/icon"
+        android:layout_marginBottom="50dp"/>
     <Button
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
@@ -20,8 +28,15 @@
         android:text="mute"
         android:id="@+id/mute"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="159dp" />
+        android:layout_alignParentLeft="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="getPhoto"
+        android:id="@+id/getPhoto"
+        android:layout_toRightOf="@+id/mute"
+        android:layout_above="@+id/runMotion"/>
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -30,15 +45,15 @@
         android:text="unMute"
         android:id="@+id/unMute"
         android:layout_alignBottom="@+id/mute"
-        android:layout_alignParentEnd="true" />
+
+        android:layout_toRightOf="@+id/getPhoto"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="runMotion"
         android:id="@+id/runMotion"
-        android:layout_below="@+id/mute"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/mute"/>
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -46,16 +61,11 @@
         android:layout_height="wrap_content"
         android:text="stopMotion"
         android:id="@+id/stopMotion"
-        android:layout_alignBottom="@+id/runMotion"
-        android:layout_alignEnd="@+id/unMute" />
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/unMute"
+        />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="getPhoto"
-        android:id="@+id/getPhoto"
-        android:layout_above="@+id/runMotion"
-        android:layout_toEndOf="@+id/runMotion" />
+
 
     <ImageView
         android:layout_width="wrap_content"
@@ -63,4 +73,4 @@
         android:id="@+id/camImage"
         android:layout_below="@+id/runMotion"
         android:layout_centerHorizontal="true" />
-</RelativeLayout>
+</LinearLayout>

@@ -33,10 +33,10 @@ public class MasterActivity extends AppCompatActivity {
         InternalController.start(token , this);
         getPhoto = (Button) findViewById(R.id.getPhoto);
 
-         mute = (Button) findViewById(R.id.mute);
-         umMute = (Button) findViewById(R.id.unMute);
-          runMotion = (Button) findViewById(R.id.runMotion);
-         stopMotion = (Button) findViewById(R.id.stopMotion);
+        mute = (Button) findViewById(R.id.mute);
+        umMute = (Button) findViewById(R.id.unMute);
+        runMotion = (Button) findViewById(R.id.runMotion);
+        stopMotion = (Button) findViewById(R.id.stopMotion);
 
         camImage = (ImageView) findViewById(R.id.camImage);
 

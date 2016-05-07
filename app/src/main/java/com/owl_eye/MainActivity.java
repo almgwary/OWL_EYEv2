@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //FireBase
-        //Firebase.setAndroidContext(this);
+        Firebase.setAndroidContext(this);
         //
         setContentView(R.layout.activity_main);
         button = (Button) this.findViewById(R.id.button);
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("MainActivity", "Scanned");
                 Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
                 //token = result.getContents();
-                Intent intent = new Intent(getBaseContext(), MasterActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MasterActivity.class);
                 intent.putExtra("token", result.getContents());
                 startActivity(intent);
             }

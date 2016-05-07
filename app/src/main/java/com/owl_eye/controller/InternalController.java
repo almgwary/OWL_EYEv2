@@ -54,6 +54,10 @@ public class InternalController {
 		m.setTask(t);
 		messageSystem.send(m);
 	}
+
+
+
+	/** not handelded recivig Pohotos*/
 	public static void onReciveingMessage(Message m){
 		System.out.println("Reciving Message");
 		//BufferedImage image = base64StringToImg(m.getPhoto());
