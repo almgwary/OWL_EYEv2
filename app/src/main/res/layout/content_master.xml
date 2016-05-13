@@ -1,76 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#414254"
+    android:gravity="center"
+    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.owl_eye.MasterActivity"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:background="#414254"
     tools:showIn="@layout/activity_master">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center">
 
-    <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/icon"
-        android:layout_marginBottom="50dp"/>
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="mute"
-        android:id="@+id/mute"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="getPhoto"
-        android:id="@+id/getPhoto"
-        android:layout_toRightOf="@+id/mute"
-        android:layout_above="@+id/runMotion"/>
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="unMute"
-        android:id="@+id/unMute"
-        android:layout_alignBottom="@+id/mute"
-
-        android:layout_toRightOf="@+id/getPhoto"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="runMotion"
-        android:id="@+id/runMotion"
-        android:layout_below="@+id/mute"/>
-
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="stopMotion"
-        android:id="@+id/stopMotion"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/unMute"
-        />
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="50dp"
+            android:id="@+id/OWL_imge"
+            android:src="@drawable/icon" />
 
 
 
-    <ImageView
-        android:layout_width="122dp"
-        android:layout_height="175dp"
-        android:id="@+id/camImage"
-        android:layout_below="@+id/runMotion"
-        android:layout_centerHorizontal="true" />
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/OWL_imge"
+            android:id="@+id/volum_section"
+            android:gravity="center">
+            <Button
+                android:id="@+id/mute"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="mute" />
+
+
+            <Button
+                android:id="@+id/unMute"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_toRightOf="@+id/mute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/mute"
+                android:text="unMute" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/Motion_section"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/volum_section"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/runMotion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/getPhoto"
+                android:layout_centerHorizontal="true"
+                android:text="runMotion" />
+
+            <Button
+                android:id="@+id/stopMotion"
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/runMotion"
+                android:layout_centerHorizontal="true"
+                android:text="stopMotion" />
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/getPhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Motion_section"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_centerHorizontal="true"
+            android:text="getPhoto" />
+
+        <ImageView
+            android:id="@+id/camImage"
+            android:layout_width="200dp"
+            android:layout_height="175dp"
+            android:layout_below="@+id/getPhoto"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
+
+</ScrollView>

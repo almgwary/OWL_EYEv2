@@ -1,18 +1,15 @@
 package com.owl_eye.controller;
 
- 
-
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
 import com.firebase.client.AuthData;
+import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-import com.owl_eye.MasterActivity;
 import com.owl_eye.messageSystem.Message;
 import com.owl_eye.messageSystem.MessageSystem;
 import com.owl_eye.messageSystem.Task;
-import com.firebase.client.Firebase;
 
 import java.io.IOException;
 
@@ -36,82 +33,77 @@ import java.io.IOException;
 
 /**
  * @author elmegwary
- *
  */
 public class InternalController {
 
 
-	static MessageSystem messageSystem =  null ;
-	static Firebase ref = new Firebase("https://0007.firebaseio.com/OWL");
-	static CallBack callBack ;;
-	
-	
-	public static void start (final String token,CallBack c) {
-		callBack = c;
+    static MessageSystem messageSystem = null;
+    static Firebase ref = new Firebase("https://0007.firebaseio.com/OWL");
+    static CallBack callBack;
+    ;
 
 
-		ref.authAnonymously(new Firebase.AuthResultHandler() {
-
-			@Override
-			public void onAuthenticationError(FirebaseError arg0) {
-				System.err.println("not Aouthinticaated: "+ arg0.toString());
-				try {
-					throw new Exception() ;
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-			}
-
-			@Override
-			public void onAuthenticated(AuthData arg0) {
-				System.out.println("Aouthinticaated: "+ arg0.toString());
-				messageSystem  =  new MessageSystem(ref.child(token).child("master"), ref.child(token).child("slave"));
-				sentOrder(Task.START);
+    public static void start(final String token, CallBack c) {
+        callBack = c;
 
 
+        ref.authAnonymously(new Firebase.AuthResultHandler() {
 
-			}
-		});
+            @Override
+            public void onAuthenticationError(FirebaseError arg0) {
+                System.err.println("not Aouthinticaated: " + arg0.toString());
+                try {
+                    throw new Exception();
+                } catch (Exception e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+
+            }
+
+            @Override
+            public void onAuthenticated(AuthData arg0) {
+                System.out.println("Aouthinticaated: " + arg0.toString());
+                messageSystem = new MessageSystem(ref.child(token).child("master"), ref.child(token).child("slave"));
+                sentOrder(Task.START);
+
+
+            }
+        });
 //		messageSystem  =  new MessageSystem(ref.child(token).child("master"), ref.child(token).child("slave"));
 //		sentOrder(Task.START);
-				
-	}
-	
-	public static void sentOrder(Task t){
-		Message m = new Message() ;
 
-		m.setTask(t);
-		messageSystem.send(m);
-	}
+    }
 
+    public static void sentOrder(Task t) {
+        Message m = new Message();
 
+        m.setTask(t);
+        messageSystem.send(m);
+    }
 
 
-	public static void onReciveingMessage(Message m){
-		System.out.println("Reciving Message");
+    public static void onReciveingMessage(Message m) {
+        System.out.println("Reciving Message");
 
-		byte[] imageInByte = null ;
+        byte[] imageInByte = null;
 
-		try {
-			imageInByte = com.firebase.client.utilities.Base64.decode(m.getImage());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+        try {
+            imageInByte = com.firebase.client.utilities.Base64.decode(m.getImage());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-		Bitmap bitmap = BitmapFactory.decodeByteArray(imageInByte, 0, imageInByte.length);
+        Bitmap bitmap = BitmapFactory.decodeByteArray(imageInByte, 0, imageInByte.length);
 
 
- 		callBack.onRecivePhoto(bitmap);
-		 
-	}
-	
-	
-	
+        callBack.onRecivePhoto(bitmap);
+
+    }
+
 
 	 /*public static String imgToBase64String(final RenderedImage img, final String formatName) {
-		    final ByteArrayOutputStream os = new ByteArrayOutputStream();
+            final ByteArrayOutputStream os = new ByteArrayOutputStream();
 		    try {
 		        ImageIO.write(img, formatName, Base64.getEncoder().wrap(os));
 		        return os.toString(StandardCharsets.ISO_8859_1.name());
