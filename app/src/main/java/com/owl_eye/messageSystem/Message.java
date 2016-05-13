@@ -8,21 +8,15 @@ package com.owl_eye.messageSystem;
  * Message.java
  **/
 public class Message {
-	 String photo ;
-	 Task task ;
-	 
+	Task task ;
+	String image ;
+
 	public Message() {
 		super();
-		// TODO Auto-generated constructor stub
+
 	}
 
-	public String getPhoto() {
-		return photo;
-	}
 
-	public void setPhoto(String photo) {
-		this.photo = photo;
-	}
 
 	public Task getTask() {
 		return task;
@@ -31,7 +25,20 @@ public class Message {
 	public void setTask(Task task) {
 		this.task = task;
 	}
- 
-	 
-	
+
+
+
+	public String getImage() {
+		return image;
+	}
+
+
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+
+
+
 }

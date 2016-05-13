@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.firebase.client.Firebase;
@@ -20,8 +21,10 @@ import com.google.zxing.integration.android.IntentResult;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button button;
+    private Button buttonQR;
+    private Button textTokenButton ;
     private String token;
+    private EditText editText ;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,9 +36,24 @@ public class MainActivity extends AppCompatActivity {
         Firebase.setAndroidContext(this);
         //
         setContentView(R.layout.activity_main);
-        button = (Button) this.findViewById(R.id.button);
+        buttonQR = (Button) this.findViewById(R.id.button);
+        textTokenButton = (Button) this.findViewById(R.id.button2);
+        editText =  (EditText) this.findViewById(R.id.editText);
+
         final Activity activity = this;
-        button.setOnClickListener(new View.OnClickListener() {
+        textTokenButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d("MainActivity", "Scanned");
+                 token = editText.getText().toString();
+                Toast.makeText(activity, "Scanned: " + token, Toast.LENGTH_LONG).show();
+                //token = result.getContents();
+                Intent intent = new Intent(getApplicationContext(), MasterActivity.class);
+                intent.putExtra("token",token);
+                startActivity(intent);
+            }
+        });
+        buttonQR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 IntentIntegrator integrator = new IntentIntegrator(activity);
