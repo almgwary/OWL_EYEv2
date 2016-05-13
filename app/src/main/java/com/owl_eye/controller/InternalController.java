@@ -43,11 +43,11 @@ public class InternalController {
 
 	static MessageSystem messageSystem =  null ;
 	static Firebase ref = new Firebase("https://0007.firebaseio.com/OWL");
-	//static Page2Controller page2Controller ;
+	static CallBack callBack ;;
 	
 	
-	public static void start (final String token,MasterActivity c) {
-		//page2Controller = c;
+	public static void start (final String token,CallBack c) {
+		callBack = c;
 
 
 		ref.authAnonymously(new Firebase.AuthResultHandler() {
@@ -103,7 +103,7 @@ public class InternalController {
 		Bitmap bitmap = BitmapFactory.decodeByteArray(imageInByte, 0, imageInByte.length);
 
 
- 
+ 		callBack.onRecivePhoto(bitmap);
 		 
 	}
 	

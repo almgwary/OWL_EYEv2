@@ -1,15 +1,18 @@
 package com.owl_eye;
 
+import android.graphics.Bitmap;
 import android.graphics.drawable.Icon;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.owl_eye.controller.CallBack;
 import com.owl_eye.controller.InternalController;
 import com.owl_eye.messageSystem.Task;
 
@@ -30,7 +33,6 @@ public class MasterActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         token = getIntent().getExtras().getString("token");
-        InternalController.start(token , this);
         getPhoto = (Button) findViewById(R.id.getPhoto);
 
         mute = (Button) findViewById(R.id.mute);
@@ -39,6 +41,15 @@ public class MasterActivity extends AppCompatActivity {
         stopMotion = (Button) findViewById(R.id.stopMotion);
 
         camImage = (ImageView) findViewById(R.id.camImage);
+
+
+        InternalController.start(token, new CallBack() {
+            @Override
+            public void onRecivePhoto(Bitmap bitmap) {
+                Log.d("CallBAck","RecivedBitMap");
+                camImage.setImageBitmap(bitmap);
+             }
+        });
 
 
 
